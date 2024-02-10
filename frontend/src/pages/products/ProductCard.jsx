@@ -23,7 +23,7 @@ export const ProductCard = (props) => {
  }
   return (
     <Stack
-    
+    maxW={'450px'}
       spacing={{
         base: "4",
         md: "5",

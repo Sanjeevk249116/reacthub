@@ -1,6 +1,7 @@
 import {
   CHESS_LOADING,
   CHESS_SUCCESS,
+  RATING_HISTORY,
   SignUpData,
   logInData,
 } from "./actionType";
@@ -44,6 +45,16 @@ export const chessGeting = (pages) => async (dispatch) => {
    dispatch({type:CHESS_LOADING})
     const response = await axios.get(`${hostApi}/top-players?page=${pages}`);
    dispatch({ type: CHESS_SUCCESS, payload: response.data });
+  } catch (err) {
+    console.log("error in fetching chess data");
+  }
+};
+
+export const ratingHistoryData = (username) => async (dispatch) => {
+  try {
+   dispatch({type:CHESS_LOADING})
+    const response = await axios.get(`${hostApi}/player/${username}/rating-history`);
+   dispatch({ type: RATING_HISTORY, payload: response.data });
   } catch (err) {
     console.log("error in fetching chess data");
   }

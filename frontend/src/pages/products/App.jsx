@@ -5,7 +5,7 @@ import { ProductGrid } from "./ProductGrid";
 import { useDispatch, useSelector } from "react-redux";
 import { chessGeting } from "../../redux/action";
 import Pagination from "../Pagination";
-
+import { animateScroll } from "react-scroll";
 const App = () => {
   const { chessValue, isLoading } = useSelector((pre) => pre.reducer);
   const [pages, setPages] = useState(1);
@@ -15,6 +15,11 @@ const App = () => {
   useEffect(() => {
     dispatch(chessGeting(pages));
   }, [pages]);
+
+  useEffect(() => {
+    animateScroll.scrollToTop({ smooth: true });
+  }, [pages]);
+
   return (
     <Box
       maxW={"95%"}

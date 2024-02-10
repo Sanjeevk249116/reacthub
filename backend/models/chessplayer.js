@@ -24,6 +24,7 @@ const chessSchema = new Schema({
   patron: {
     type: Boolean,
   },
+  rating_history: { type: [[Number]], required: true },
 });
 
 const chessModel = mongoose.model("chess", chessSchema);

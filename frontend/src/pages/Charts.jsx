@@ -1,19 +1,21 @@
-import { Avatar, Box, Container, Heading, Text } from "@chakra-ui/react";
-import React from "react";
+import { Avatar, Box, Container, Flex, Heading, Spinner, Text } from "@chakra-ui/react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { points } from "../pages/products/_data";
 import ChartData from "./ChartData";
 import NavBar from "../navbar/NavBar";
+import { useDispatch, useSelector } from "react-redux";
+import { ratingHistoryData } from "../redux/action";
 
 function Charts() {
+  const {isLoading,rating_history} = useSelector((pre) => pre.reducer);
+  const dispatch = useDispatch();
   const { username } = useParams();
-  console.log(username);
-  console.log(points);
-  const array = [];
-  for (let i = 29; i >= 0; i--) {
-    array.push(points[i][3]);
-  }
-  console.log(array);
+  console.log(isLoading);
+  useEffect(() => {
+    dispatch(ratingHistoryData(username));
+  }, [username]);
+
+  
   return (
     <Box>
       <Box bg={"blue.900"}>
@@ -33,7 +35,20 @@ function Charts() {
       >
         Last 30 days Rating History
       </Text>
-      <ChartData array={array} />
+      {isLoading?( <Flex
+          justifyContent={"center"}
+          alignItems={"center"}
+          alignContent={"center"}
+          minHeight={"80vh"}
+        >
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="black"
+            size="xl"
+          />
+        </Flex>):<ChartData  array={rating_history}/>}
     </Box>
   );
 }

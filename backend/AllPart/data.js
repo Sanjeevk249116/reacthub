@@ -67,9 +67,44 @@ exports.chessPlayerTop = async (req, res) => {
 
   try {
     const count = await chessModel.countDocuments();
-    const data = await chessModel.find().skip(skip).limit(limit);
-    res.send({ users: data,length:count });
+    const data = await chessModel
+      .find()
+      .sort({ "perfs.classical.rating": -1 })
+      .skip(skip)
+      .limit(limit);
+
+    res.send({ users: data, length: count });
   } catch (err) {
     res.status(500).send({ message: "Error retrieving data" });
+  }
+};
+exports.ratingHistory = async (req, res) => {
+  const { username } = req.params;
+  try {
+    const data = await chessModel.findOne({ username });
+    const array = [];
+    var length = data.rating_history.length;
+    if (length < 30) {
+      for (let i = length - 1; i >= 0; i--) {
+        array.push(data.rating_history[i][3]);
+      }
+    } else {
+      for (let i = 29; i >= 0; i--) {
+        array.push(data.rating_history[i][3]);
+      }
+    }
+    res.send({ rating: array });
+  } catch (err) {
+    res.status(500).send({ message: "Error retrieving data" });
+  }
+};
+
+exports.postData = async (req, res) => {
+  const dt = await chessModel(req.body);
+  try {
+    await dt.save();
+    res.send({ msg: "done" });
+  } catch (err) {
+    console.log("error in post");
   }
 };
