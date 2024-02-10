@@ -8,7 +8,7 @@ import {
 import axios from 'axios'
 
 const hostApi = "http://localhost:8080";
-const chessData = "https://lichess.org/api/player/top/50/classical";
+
 
 export const signUpPost = (el) => async (dispatch) => {
   try {

@@ -149,7 +149,7 @@ const SignUp = () => {
           color="teal.400"
           justifyContent={"center"}
         >
-          Welcome to my chating app
+          Welcome to chess app
         </Flex>
         <Box minW={{ base: "90%", md: "468px" }}>
           <form>

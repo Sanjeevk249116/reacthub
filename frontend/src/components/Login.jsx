@@ -111,7 +111,7 @@ const Login = () => {
         alignItems="center"
       >
         <Avatar bg="teal.500" />
-        <Heading color="teal.400">Welcome to chat app</Heading>
+        <Heading color="teal.400">Chess App</Heading>
         <Box minW={{ base: "100%", md: "468px" }}>
           <form>
             <Stack
