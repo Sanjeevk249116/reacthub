@@ -20,6 +20,8 @@ function ManuLinks({ isOpen }) {
   const navigate = useNavigate();
   const { users, setUsers } = useContext(AuthContainerProvider);
   const HandleSignup = () => {
+    setUsers(false)
+    
     navigate("/login");
   };
   const handleAccount = () => {

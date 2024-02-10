@@ -27,12 +27,13 @@ const CFaLock = chakra(FaLock);
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const{ setUsers}=useContext(AuthContainerProvider)
+  const [check, setCheck] = useState(1);
+  const { users, setUsers } = useContext(AuthContainerProvider);
   const [num, setNum] = useState(0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const toast = useToast();
-  const status = useSelector((pre) => pre.reducer.status);
+  var status = useSelector((pre) => pre.reducer.status);
   console.log(status);
   const handleShowClick = () => setShowPassword(!showPassword);
   const [logDetails, setLogDetails] = useState({
@@ -67,8 +68,7 @@ const Login = () => {
     }
   };
   const logInData = (e) => {
-    e.preventDefault();
-
+    setCheck(2);
     const result = checkValidation();
     if (result == 50) {
       dispatch(logInPost(logDetails));
@@ -84,17 +84,22 @@ const Login = () => {
         isClosable: true,
       });
     }
-    if (status == 200) {
-      toast({
-        title: "login successfull",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-      });
-   setUsers(true)
-      navigate("/");
+    if (check == 2) {
+      if (status == 200) {
+        toast({
+          title: "login successfull",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+
+        setCheck(1);
+        setUsers(true);
+        navigate("/");
+      }
     }
   }, [status, num]);
+  console.log(check);
   return (
     <Flex
       flexDirection="column"
