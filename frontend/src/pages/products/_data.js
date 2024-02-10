@@ -1,89 +1,202 @@
-export const images = [
-  {
-    id: '01',
-    src: 'https://images.unsplash.com/photo-1602024242516-fbc9d4fda4b6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80',
-    alt: 'Awesome watch',
-  },
-  {
-    id: '02',
-    src: 'https://images.unsplash.com/photo-1451290337906-ac938fc89bce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1777&q=80',
-    alt: 'Awesome watch',
-  },
-  {
-    id: '03',
-    src: 'https://images.unsplash.com/photo-1568010434570-74e9ba7126bc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80',
-    alt: 'Awesome watch',
-  },
-  {
-    id: '04',
-    src: 'https://images.unsplash.com/photo-1569411032431-07598b0012c2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-    alt: 'Awesome watch',
-  },
-  {
-    id: '05',
-    src: 'https://images.unsplash.com/photo-1565440962783-f87efdea99fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=936&q=80',
-    alt: 'Awesome watch',
-  },
-  {
-    id: '06',
-    src: 'https://images.unsplash.com/photo-1548169874-53e85f753f1e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1420&q=80',
-    alt: 'Awesome watch',
-  },
-]
-export const products = [
-  {
-    id: '1',
-    name: 'Bamboo Tan',
-    currency: 'USD',
-    price: 199,
-    flag: 'new',
-    imageUrl:
-      'https://images.unsplash.com/photo-1602024242516-fbc9d4fda4b6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80',
-    rating: 4,
-    ratingCount: 1,
-    description:
-      'With a sleek design and a captivating essence, this is a modern Classic made for every occasion.',
-    images,
-  },
-  {
-    id: '2',
-    name: 'Iconic Turquoise',
-    currency: 'USD',
-    price: 199,
-    salePrice: 179.99,
-    flag: 'on-sale',
-    imageUrl:
-      'https://images.unsplash.com/photo-1509941943102-10c232535736?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80',
-    rating: 4,
-    ratingCount: 12,
-    description:
-      'With a sleek design and a captivating essence, this is a modern Classic made for every occasion.',
-    images,
-  },
-  {
-    id: '3',
-    name: 'Marble Leather',
-    currency: 'USD',
-    price: 199,
-    imageUrl:
-      'https://images.unsplash.com/photo-1564594985645-4427056e22e2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80',
-    rating: 4,
-    ratingCount: 12,
-    description:
-      'With a sleek design and a captivating essence, this is a modern Classic made for every occasion.',
-    images,
-  },
-  {
-    id: '4',
-    name: 'Silve wolf',
-    currency: 'GBP',
-    price: 199,
-    imageUrl:
-      'https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=680&q=80',
-    rating: 5,
-    ratingCount: 1,
-    description:
-      'With a sleek design and a captivating essence, this is a modern Classic made for every occasion.',
-    images,
-  },
+
+
+export const points= [
+  [
+    2023,
+    0,
+    6,
+    2406
+  ],
+  [
+    2023,
+    0,
+    9,
+    2422
+  ],
+  [
+    2023,
+    0,
+    13,
+    2427
+  ],
+  [
+    2023,
+    0,
+    14,
+    2431
+  ],
+  [
+    2023,
+    0,
+    15,
+    2448
+  ],
+  [
+    2023,
+    0,
+    17,
+    2450
+  ],
+  [
+    2023,
+    0,
+    20,
+    2432
+  ],
+  [
+    2023,
+    0,
+    22,
+    2370
+  ],
+  [
+    2023,
+    0,
+    23,
+    2422
+  ],
+  [
+    2023,
+    0,
+    27,
+    2444
+  ],
+  [
+    2023,
+    1,
+    14,
+    2445
+  ],
+  [
+    2023,
+    1,
+    21,
+    2463
+  ],
+  [
+    2023,
+    1,
+    22,
+    2464
+  ],
+  [
+    2023,
+    1,
+    23,
+    2466
+  ],
+  [
+    2023,
+    1,
+    24,
+    2437
+  ],
+  [
+    2023,
+    1,
+    26,
+    2419
+  ],
+  [
+    2023,
+    1,
+    28,
+    2420
+  ],
+  [
+    2023,
+    2,
+    3,
+    2398
+  ],
+  [
+    2023,
+    2,
+    14,
+    2399
+  ],
+  [
+    2023,
+    2,
+    19,
+    2408
+  ],
+  [
+    2023,
+    2,
+    21,
+    2409
+  ],
+  [
+    2023,
+    2,
+    22,
+    2403
+  ],
+  [
+    2023,
+    2,
+    28,
+    2403
+  ],
+  [
+    2023,
+    2,
+    31,
+    2411
+  ],
+  [
+    2023,
+    3,
+    1,
+    2413
+  ],
+  [
+    2023,
+    3,
+    4,
+    2413
+  ],
+  [
+    2023,
+    3,
+    6,
+    2389
+  ],
+  [
+    2023,
+    3,
+    7,
+    2409
+  ],
+  [
+    2023,
+    3,
+    8,
+    2425
+  ],
+  [
+    2023,
+    3,
+    9,
+    2435
+  ],
+  [
+    2023,
+    3,
+    28,
+    2405
+  ],
+  [
+    2023,
+    3,
+    29,
+    2425
+  ],
+  [
+    2023,
+    4,
+    8,
+    2415
+  ]
 ]

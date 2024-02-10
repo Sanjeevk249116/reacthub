@@ -4,20 +4,24 @@ import {
   Button,
   Menu,
   MenuButton,
+  MenuItem,
   MenuList,
   Stack,
   Text,
   useToast,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
-import MenuItem from "./MenuItem";
+import React, { useContext, useState } from "react";
+import MenuItems from "./MenuItems";
 import { useNavigate } from "react-router-dom";
+import { AuthContainerProvider } from "../authContainer/AuthContainer";
 
 function ManuLinks({ isOpen }) {
   const toast = useToast();
-  const navigate=useNavigate();
-  const [users, setUsers] = useState(false);
-
+  const navigate = useNavigate();
+  const { users, setUsers } = useContext(AuthContainerProvider);
+  const HandleSignup = () => {
+    navigate("/login");
+  };
   const handleAccount = () => {
     toast({
       status: "info",
@@ -25,9 +29,18 @@ function ManuLinks({ isOpen }) {
       duration: 3000,
     });
   };
-  const handleHome=()=>{
-    navigate("/")
-  }
+  const handleHome = () => {
+    navigate("/");
+  };
+  const handleLogOut = () => {
+    toast({
+      title: "logout successfull ",
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+    });
+    setUsers(false);
+  };
   return (
     <Box
       display={{ base: isOpen ? "block" : "none", md: "block" }}
@@ -41,21 +54,28 @@ function ManuLinks({ isOpen }) {
         pt={[4, 4, 0, 0]}
       >
         <Text
-        display="block"
-        fontSize={18}
-        fontWeight={500}
-        _hover={{ color: "red.300" }}
-        onClick={handleHome}
-      >
-        Home
-      </Text>
-        <MenuItem>Service</MenuItem>
-        <MenuItem>Contact us</MenuItem>
-        <MenuItem>About us</MenuItem>
+          display="block"
+          fontSize={18}
+          fontWeight={500}
+          _hover={{ color: "red.300" }}
+          onClick={handleHome}
+          cursor={"pointer"}
+        >
+          Home
+        </Text>
+        <MenuItems>Service</MenuItems>
+        <MenuItems>Contact us</MenuItems>
+        <MenuItems>About us</MenuItems>
         {users ? (
           <Menu placement="bottom">
             <MenuButton>
-            <Avatar name='Sasuke Uchiha' src='https://bit.ly/broken-link' size="sm" mt="-1" p="0" />
+              <Avatar
+                name="Sasuke Uchiha"
+                src="https://bit.ly/broken-link"
+                size="sm"
+                mt="-1"
+                p="0"
+              />
             </MenuButton>
             <MenuList
               textAlign="center"
@@ -93,6 +113,7 @@ function ManuLinks({ isOpen }) {
                   rounded="md"
                   p="2"
                   width="full"
+                  onClick={handleLogOut}
                 >
                   Log out
                 </Button>
@@ -106,6 +127,7 @@ function ManuLinks({ isOpen }) {
             borderColor="red"
             variant="outline"
             mb="2"
+            onClick={HandleSignup}
           >
             SIGN UP
           </Button>

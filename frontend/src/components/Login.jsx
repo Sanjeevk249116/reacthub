@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Flex,
   Heading,
@@ -20,17 +20,20 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { logInPost } from "../redux/action";
 import { useNavigate } from "react-router-dom";
+import { AuthContainerProvider } from "../authContainer/AuthContainer";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const{ setUsers}=useContext(AuthContainerProvider)
+  const [num, setNum] = useState(0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const toast = useToast();
   const status = useSelector((pre) => pre.reducer.status);
-
+  console.log(status);
   const handleShowClick = () => setShowPassword(!showPassword);
   const [logDetails, setLogDetails] = useState({
     email: "",
@@ -58,21 +61,22 @@ const Login = () => {
         isClosable: true,
       });
       return 100;
-    }else{
+    } else {
+      setNum((pre) => pre + 1);
       return 50;
     }
   };
   const logInData = (e) => {
     e.preventDefault();
+
     const result = checkValidation();
     if (result == 50) {
-      dispatch(logInPost(logDetails))
-       
-     
+      dispatch(logInPost(logDetails));
     }
   };
-  useEffect(()=>{
-    if (status == 401) {
+
+  useEffect(() => {
+    if (status >= 400 && status <= 499) {
       toast({
         title: "Failed to login ",
         status: "error",
@@ -87,9 +91,10 @@ const Login = () => {
         duration: 3000,
         isClosable: true,
       });
+   setUsers(true)
       navigate("/");
     }
-  },[status])
+  }, [status, num]);
   return (
     <Flex
       flexDirection="column"
@@ -107,11 +112,11 @@ const Login = () => {
       >
         <Avatar bg="teal.500" />
         <Heading color="teal.400">Welcome to chat app</Heading>
-        <Box minW={{ base: "90%", md: "468px" }}>
+        <Box minW={{ base: "100%", md: "468px" }}>
           <form>
             <Stack
               spacing={4}
-              p="3rem"
+              p={{ base: "10px", md: "3rem" }}
               backgroundColor="whiteAlpha.900"
               boxShadow="md"
             >

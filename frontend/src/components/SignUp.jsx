@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Flex,
   Heading,
@@ -15,11 +15,12 @@ import {
   InputRightElement,
   useToast,
 } from "@chakra-ui/react";
-import { EmailIcon, PhoneIcon } from "@chakra-ui/icons";
+import { CalendarIcon, EmailIcon, PhoneIcon } from "@chakra-ui/icons";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { signUpPost } from "../redux/action";
 import { useNavigate } from "react-router-dom";
+import { AuthContainerProvider } from "../authContainer/AuthContainer";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -30,6 +31,7 @@ const SignUp = () => {
   const dispatch = useDispatch();
   const status = useSelector((pre) => pre.reducer.status);
   const [showPassword, setShowPassword] = useState(false);
+  const{ setUsers}=useContext(AuthContainerProvider)
   const [details, setDetails] = useState({
     name: "",
     email: "",
@@ -68,6 +70,7 @@ const SignUp = () => {
         duration: 3000,
         isClosable: true,
       });
+      setUsers(true)
       navigate("/");
     }
   }, [status]);
@@ -140,12 +143,19 @@ const SignUp = () => {
         alignItems="center"
       >
         <Avatar bg="teal.500" />
-        <Heading color="teal.400">Welcome to my chating app</Heading>
+        <Flex
+          fontSize={28}
+          fontWeight={700}
+          color="teal.400"
+          justifyContent={"center"}
+        >
+          Welcome to my chating app
+        </Flex>
         <Box minW={{ base: "90%", md: "468px" }}>
           <form>
             <Stack
               spacing={4}
-              p="2rem"
+              p={{ base: "10px", md: "2rem" }}
               backgroundColor="whiteAlpha.900"
               boxShadow="md"
             >
@@ -192,8 +202,25 @@ const SignUp = () => {
                   />
                   <Input
                     width={"70%"}
+                    display={{ base: "none", md: "block" }}
                     type="date"
                     name="dob"
+                    placeholder="DOB"
+                    onChange={handleForm}
+                  />
+                </InputGroup>
+              </FormControl>
+              <FormControl>
+                <InputGroup>
+                  <InputLeftElement
+                    pointerEvents="none"
+                    children={<CalendarIcon color="gray.300" />}
+                  />
+                  <Input
+                    display={{ base: "block", md: "none" }}
+                    type="date"
+                    name="dob"
+                    color="gray.500"
                     placeholder="DOB"
                     onChange={handleForm}
                   />

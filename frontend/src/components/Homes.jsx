@@ -1,12 +1,17 @@
-import React from 'react'
-import { App } from '../pages/products/App'
+import React from "react";
+import App from "../pages/products/App";
+import NavBar from "../navbar/NavBar";
+import { Box } from "@chakra-ui/react";
 
 function Homes() {
   return (
-    <div>
-      <App/>
-    </div>
-  )
+    <Box>
+      <Box bg={"blue.900"}>
+        <NavBar />
+      </Box>
+      <App />
+    </Box>
+  );
 }
 
-export default Homes
+export default Homes;

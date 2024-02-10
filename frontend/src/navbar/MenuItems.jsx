@@ -2,15 +2,15 @@ import { Text, useToast } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 
-function MenuItem({ children }) {
+function MenuItems({ children }) {
   const toast = useToast();
   const handleAccount = () => {
     toast({
-      status: 'info',
-      title: 'Feature Coming out soon',
-      duration: 3000
-    })
-  }
+      status: "info",
+      title: "Feature Coming out soon",
+      duration: 3000,
+    });
+  };
   return (
     <Link>
       <Text
@@ -25,5 +25,4 @@ function MenuItem({ children }) {
     </Link>
   );
 }
-
-export default MenuItem;
+export default MenuItems;
