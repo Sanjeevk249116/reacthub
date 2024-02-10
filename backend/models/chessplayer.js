@@ -1,33 +1,31 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const chessSchema = new Schema({
   id: {
     type: String,
-    required: true
+    required: true,
   },
   username: {
     type: String,
-    required: true
+    required: true,
   },
   perfs: {
     classical: {
       rating: {
-        type: [[Number]],
-        required: true
+        type: Number,
+        required: true,
       },
       progress: {
         type: Number,
-        required: true
-      }
-    }
+      },
+    },
   },
   patron: {
     type: Boolean,
-    required: true
-  }
+  },
 });
 
-const chessModel = mongoose.model('chess', chessSchema);
+const chessModel = mongoose.model("chess", chessSchema);
 
-module.exports={chessModel}
+module.exports = { chessModel };

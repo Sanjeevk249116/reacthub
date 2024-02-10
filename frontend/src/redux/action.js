@@ -39,10 +39,10 @@ export const logInPost = (el) => async (dispatch) => {
   }
 };
 
-export const chessGeting = () => async (dispatch) => {
+export const chessGeting = (pages) => async (dispatch) => {
   try {
    dispatch({type:CHESS_LOADING})
-    const response = await axios.get(`${chessData}`);
+    const response = await axios.get(`${hostApi}/top-players?page=${pages}`);
    dispatch({ type: CHESS_SUCCESS, payload: response.data });
   } catch (err) {
     console.log("error in fetching chess data");

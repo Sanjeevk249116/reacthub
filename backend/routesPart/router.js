@@ -1,5 +1,5 @@
 const express = require("express");
-const { signupPost, logInPost} = require("../AllPart/data");
+const { signupPost, logInPost, chessPlayerTop} = require("../AllPart/data");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -8,5 +8,6 @@ router.get("/", (req, res) => {
 
 router.post("/signup", signupPost);
 router.post("/login", logInPost);
+router.get("/top-players", chessPlayerTop);
 
 module.exports = { router };

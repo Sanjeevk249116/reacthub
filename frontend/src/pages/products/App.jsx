@@ -1,17 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Flex, Spinner } from "@chakra-ui/react";
 import { ProductCard } from "./ProductCard";
 import { ProductGrid } from "./ProductGrid";
 import { useDispatch, useSelector } from "react-redux";
 import { chessGeting } from "../../redux/action";
+import Pagination from "../Pagination";
 
 const App = () => {
   const { chessValue, isLoading } = useSelector((pre) => pre.reducer);
+  const [pages, setPages] = useState(1);
   const products = chessValue.users;
- const dispatch = useDispatch();
+  const length = chessValue.length;
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(chessGeting());
-  }, []);
+    dispatch(chessGeting(pages));
+  }, [pages]);
   return (
     <Box
       maxW={"95%"}
@@ -28,15 +31,20 @@ const App = () => {
       }}
     >
       {isLoading ? (
-      <Flex justifyContent={"center"} alignItems={"center"} alignContent={"center"} minHeight={'80vh'}>
-         <Spinner
-       thickness='4px'
-       speed='0.65s'
-       emptyColor='gray.200'
-       color='black'
-       size='xl'
-     />
-      </Flex>
+        <Flex
+          justifyContent={"center"}
+          alignItems={"center"}
+          alignContent={"center"}
+          minHeight={"80vh"}
+        >
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="black"
+            size="xl"
+          />
+        </Flex>
       ) : (
         <ProductGrid>
           {products?.map((product) => (
@@ -44,6 +52,7 @@ const App = () => {
           ))}
         </ProductGrid>
       )}
+      <Pagination setPages={setPages} length={length} />
     </Box>
   );
 };

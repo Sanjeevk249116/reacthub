@@ -10,6 +10,7 @@ const listStates = {
   status: 0,
   chessValue: [],
   isLoading: false,
+  length:0,
 };
 
 function reducer(state = listStates, { type, payload }) {
@@ -24,7 +25,7 @@ function reducer(state = listStates, { type, payload }) {
       return { ...state, isLoading: true };
 
     case CHESS_SUCCESS:
-      return { ...state, chessValue: payload, isLoading: false };
+      return { ...state, chessValue: payload, isLoading: false,length:payload.length };
 
     default:
       return state;

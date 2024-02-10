@@ -1,6 +1,7 @@
 var jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { SignUpModel } = require("../models/signup");
+const { chessModel } = require("../models/chessplayer");
 
 exports.signupPost = async (req, res) => {
   const { name, email, password, dob, phone } = req.body;
@@ -59,4 +60,16 @@ exports.logInPost = async (req, res) => {
   }
 };
 
+exports.chessPlayerTop = async (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = 20;
+  const skip = (page - 1) * limit;
 
+  try {
+    const count = await chessModel.countDocuments();
+    const data = await chessModel.find().skip(skip).limit(limit);
+    res.send({ users: data,length:count });
+  } catch (err) {
+    res.status(500).send({ message: "Error retrieving data" });
+  }
+};
