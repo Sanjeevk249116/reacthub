@@ -1,6 +1,6 @@
 import { SignUpData, logInData } from "./actionType";
 
-const hostApi="http://localhost:9092";
+const hostApi="http://localhost:8080";
 
 export const signUpPost=(el)=>async(dispatch)=>{
    try{
@@ -18,6 +18,7 @@ export const signUpPost=(el)=>async(dispatch)=>{
 }
 
 export const logInPost=(el)=>async(dispatch)=>{
+  
    try{
      const response=await fetch(`${hostApi}/login`,{
       method:"POST",

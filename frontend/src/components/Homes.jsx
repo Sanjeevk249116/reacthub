@@ -1,9 +1,10 @@
 import React from 'react'
+import { App } from '../pages/products/App'
 
 function Homes() {
   return (
     <div>
-      home
+      <App/>
     </div>
   )
 }
