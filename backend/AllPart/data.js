@@ -1,5 +1,6 @@
 var jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const csv = require("csv-parser");
 const { SignUpModel } = require("../models/signup");
 const { chessModel } = require("../models/chessplayer");
 
@@ -106,5 +107,43 @@ exports.postData = async (req, res) => {
     res.send({ msg: "done" });
   } catch (err) {
     console.log("error in post");
+  }
+};
+
+exports.CsvData = async (req, res) => {
+  const fetchHistory = async (username) => {
+    const data = await chessModel.findOne({ username });
+    const array = [];
+    var length = data?.rating_history.length;
+    if (length < 30) {
+      for (let i = length - 1; i >= 0; i--) {
+        array.push(data.rating_history[i][3]);
+      }
+    } else {
+      for (let i = 29; i >= 0; i--) {
+        array.push(data.rating_history[i][3]);
+      }
+    }
+    return array;
+  };
+  try {
+    const dataVal = await chessModel.find();
+    const csvData = [];
+    await Promise.all(
+      dataVal.map(async (player, idx) => {
+        const history = await fetchHistory(player.username);
+        const rowData = [player.username, ...history];
+
+        csvData.push(rowData.join(","));
+      })
+    );
+    res.setHeader("Content-Type", "text/csv");
+    res.setHeader(
+      "Content-Disposition",
+      "attachment; filename=rating_history.csv"
+    );
+    res.send(csvData.join("\n"));
+  } catch (err) {
+    console.log("error found");
   }
 };

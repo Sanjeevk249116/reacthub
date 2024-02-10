@@ -1,4 +1,12 @@
-import { Avatar, Box, Container, Flex, Heading, Spinner, Text } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Container,
+  Flex,
+  Heading,
+  Spinner,
+  Text,
+} from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ChartData from "./ChartData";
@@ -7,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ratingHistoryData } from "../redux/action";
 
 function Charts() {
-  const {isLoading,rating_history} = useSelector((pre) => pre.reducer);
+  const { isLoading, rating_history } = useSelector((pre) => pre.reducer);
   const dispatch = useDispatch();
   const { username } = useParams();
   console.log(isLoading);
@@ -15,7 +23,6 @@ function Charts() {
     dispatch(ratingHistoryData(username));
   }, [username]);
 
-  
   return (
     <Box>
       <Box bg={"blue.900"}>
@@ -33,9 +40,10 @@ function Charts() {
         color={"red"}
         p={5}
       >
-        Last 30 days Rating History
+        Last {rating_history.length} days Rating History
       </Text>
-      {isLoading?( <Flex
+      {isLoading ? (
+        <Flex
           justifyContent={"center"}
           alignItems={"center"}
           alignContent={"center"}
@@ -48,7 +56,10 @@ function Charts() {
             color="black"
             size="xl"
           />
-        </Flex>):<ChartData  array={rating_history}/>}
+        </Flex>
+      ) : (
+        <ChartData array={rating_history} />
+      )}
     </Box>
   );
 }
