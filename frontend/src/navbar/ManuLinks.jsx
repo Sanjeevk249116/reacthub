@@ -10,27 +10,25 @@ import {
   Text,
   useToast,
 } from "@chakra-ui/react";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MenuItems from "./MenuItems";
 import { useNavigate } from "react-router-dom";
 import { AuthContainerProvider } from "../authContainer/AuthContainer";
+import { useDispatch, useSelector } from "react-redux";
+import { csv_ratingHistoryData } from "../redux/action";
 
 function ManuLinks({ isOpen }) {
+  const dispatch = useDispatch();
+  const data = useSelector((pre) => pre.reducer.csv);
+
   const toast = useToast();
   const navigate = useNavigate();
   const { users, setUsers } = useContext(AuthContainerProvider);
   const HandleSignup = () => {
-    setUsers(false)
-    
+    setUsers(false);
     navigate("/login");
   };
-  const handleAccount = () => {
-    toast({
-      status: "info",
-      title: "Feature Coming out soon",
-      duration: 3000,
-    });
-  };
+
   const handleHome = () => {
     navigate("/");
   };
@@ -43,6 +41,23 @@ function ManuLinks({ isOpen }) {
     });
     setUsers(false);
   };
+  const handleCsvFile = () => {
+    dispatch(csv_ratingHistoryData());
+  };
+  useEffect(() => {
+    if (data.length != 0) {
+      const blob = new Blob([data], { type: "text/csv" });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "data.csv");
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    }
+  }, [data]);
   return (
     <Box
       display={{ base: isOpen ? "block" : "none", md: "block" }}
@@ -88,7 +103,7 @@ function ManuLinks({ isOpen }) {
             >
               <MenuItem textAlign="center" alignItems="center" display="flex">
                 <Button
-                  onClick={handleAccount}
+                  onClick={handleCsvFile}
                   colorScheme="linkedin"
                   _hover={{ bg: "blue.100" }}
                   variant="outline"
@@ -101,7 +116,7 @@ function ManuLinks({ isOpen }) {
                   p="2"
                   width="full"
                 >
-                  Account
+                  CSV File
                 </Button>
               </MenuItem>
               <MenuItem textAlign="center" alignItems="center" display="flex">

@@ -1,6 +1,7 @@
 import {
   CHESS_LOADING,
   CHESS_SUCCESS,
+  CSV_FILE,
   RATING_HISTORY,
   SignUpData,
   logInData,
@@ -13,10 +14,11 @@ const listStates = {
   isLoading: false,
   length: 0,
   rating_history: [],
+   csv:[],
 };
 
 function reducer(state = listStates, { type, payload }) {
- switch (type) {
+  switch (type) {
     case SignUpData:
       return { ...state, status: payload };
 
@@ -33,7 +35,11 @@ function reducer(state = listStates, { type, payload }) {
         isLoading: false,
         length: payload.length,
       };
-    case RATING_HISTORY:return{...state,rating_history:payload.rating,isLoading:false}
+    case RATING_HISTORY:
+      return { ...state, rating_history: payload.rating, isLoading: false };
+
+    case CSV_FILE:
+      return { ...state,csv:payload };
     default:
       return state;
   }
