@@ -10,10 +10,10 @@ Full stack project
 
 ## Deplolyed App
 
-Frontend: https://chesses-app.vercel.app
-Backend: https://reacthub.onrender.com
-Backend GitHub: https://github.com/Sanjeevk249116/reacthub_backend
-Swagger Docs: https://reacthub.onrender.com/api-docs/
+Frontend: https://chesses-app.vercel.app<br>
+Backend: https://reacthub.onrender.com<br>
+Backend GitHub: https://github.com/Sanjeevk249116/reacthub_backend<br>
+Swagger Docs: https://reacthub.onrender.com/api-docs/<br>
 
 ## Directory Structure
 
