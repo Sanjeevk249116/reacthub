@@ -194,7 +194,7 @@ const SignUp = () => {
                     children={<PhoneIcon color="gray.300" />}
                   />
                   <Input
-                    mr={4}
+                    mr={{base:"0px",md:"15px"}}
                     type="number"
                     name="phone"
                     placeholder="Phone Number"
@@ -210,7 +210,7 @@ const SignUp = () => {
                   />
                 </InputGroup>
               </FormControl>
-              <FormControl>
+              <FormControl  display={{ base: "block", md: "none" }}>
                 <InputGroup>
                   <InputLeftElement
                     pointerEvents="none"

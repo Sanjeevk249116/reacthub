@@ -8,7 +8,7 @@ import {
 } from "./actionType";
 import axios from "axios";
 
-const hostApi = "http://localhost:8080";
+const hostApi = "https://reacthub.onrender.com";
 
 export const signUpPost = (el) => async (dispatch) => {
   try {
