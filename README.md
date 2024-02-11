@@ -1,4 +1,4 @@
-# Full Stack Engineer Assignment Project of chess app
+# Full Stack Assignment Project of chess app
 
 ## Introduction
 
@@ -29,6 +29,8 @@ reacthub/
 ├─ routers
 
 ## Video Walkthrough of the project
+
+
 
 ## Video Walkthrough of the codebase
 
