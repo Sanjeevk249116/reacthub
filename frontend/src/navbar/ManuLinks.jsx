@@ -23,6 +23,7 @@ function ManuLinks({ isOpen }) {
 
   const toast = useToast();
   const navigate = useNavigate();
+  const [render, setRender] = useState(1);
   const { users, setUsers } = useContext(AuthContainerProvider);
   const HandleSignup = () => {
     setUsers(false);
@@ -42,10 +43,12 @@ function ManuLinks({ isOpen }) {
     setUsers(false);
   };
   const handleCsvFile = () => {
+    setRender(2);
     dispatch(csv_ratingHistoryData());
   };
   useEffect(() => {
-    if (data.length != 0) {
+    if (data.length != 0 && render == 2) {
+      setRender(1);
       const blob = new Blob([data], { type: "text/csv" });
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
@@ -146,7 +149,7 @@ function ManuLinks({ isOpen }) {
             mb="2"
             onClick={HandleSignup}
           >
-            SIGN UP
+            SIGNIN
           </Button>
         )}
       </Stack>
